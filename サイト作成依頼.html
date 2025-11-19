@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美容サロン向け -Aripitto予約システム-</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f9f7f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #f5e6e0 0%, #faf3f0 100%);
+            padding: 40px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #d4a574;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        h1.title {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #d4a574;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #d4a574;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section p {
+            font-size: 14px;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .section strong {
+            color: #333;
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #d4a574;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e8ddd8;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #d4a574;
+            background-color: #fffbf9;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-full {
+            grid-column: 1 / -1;
+        }
+
+        .info-box {
+            background: #fef5f1;
+            border-left: 4px solid #d4a574;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 5px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checkbox-label {
+            flex: 1;
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .link {
+            color: #d4a574;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4a574 0%, #c9975f 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #3d3d3d 0%, #2a2a2a 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .section,
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ARI DESIGN</div>
+                <h1 class="title">美容サロン向け -Aripitto予約システム-</h1>
+                <p class="subtitle">新規集客が自動になる予約システム</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Introduction Section -->
+            <div class="section">
+                <h2 class="section-title">サイト作成</h2>
+                <p>システムのすべての機能をお使いいただけます。</p>
+                <p>益々のご発展をお祈りするとともに、専任のオペレータが全力サポートいたします。</p>
+                <p style="margin-top: 20px; margin-bottom: 10px;"><strong>ご導入につきましては、1業種1エリア2店舗までとなります。</strong></p>
+                <p>必要事項を記載し、「送信」ボタンを押してください。</p>
+                <p style="margin-top: 20px;">なお、弊社でサイト作成後、導入レクチャー中は２週間の無料期間がございます。</p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <form id="contactForm" action="https://script.google.com/macros/s/AKfycbyTWnZmov733P5pzyY52-K6dD9-Nt6F2tbbZ80OjsdJj66FaogtsdUh9vJ2kXbyVAqZHQ/exec" method="POST">
+                    <div class="form-group form-full">
+                        <label for="storeName">店舗名 <span class="required">*</span></label>
+                        <input type="text" id="storeName" name="storeName" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="postalCode">店舗の郵便番号 <span class="required">*</span></label>
+                            <input type="text" id="postalCode" name="postalCode" placeholder="例：150-0001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="homepage">店舗ホームページ <span class="required">*</span></label>
+                            <input type="url" id="homepage" name="homepage" placeholder="https://example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">店舗電話番号</label>
+                            <input type="tel" id="phone" name="phone" placeholder="例：03-xxxx-xxxx">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">連絡先メールアドレス <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="siteName">希望の予約サイト名 <span class="required">*</span></label>
+                        <input type="text" id="siteName" name="siteName" placeholder="英数字のみ" required>
+                        <div class="info-box" style="margin-top: 10px;">
+                            ※あなたの予約サイトのアドレスになりますので、お好きな名前（英数字のみ）を決めてください。<br>
+                            [希望名].hot-yoyaku.netとなります。<br>
+                            例）beauty-salon.hot-yoyaku.net
+                        </div>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="remarks">備考</label>
+                        <textarea id="remarks" name="remarks" placeholder="ご不明な点やご質問などございましたら、こちらにお書きください。"></textarea>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreement" name="agreement" required>
+                            <label for="agreement" class="checkbox-label">
+                                利用規約の同意 <a href="Aripitto_利用規約.pdf" class="link" target="_blank">アカウント管理の利用規約はこちら</a><br>
+                                アカウント管理の利用規約に同意する <span class="required">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label for="googleAccount">予約サイトで使用するGoogleアカウント（Gメールアドレス）</label>
+                        <input type="email" id="googleAccount" name="googleAccount" placeholder="example@gmail.com">
+                        <div class="info-box" style="margin-top: 10px;">
+                            MEO対策、メール送信で必要になります<br>
+                            ※Googleアカウントをお持ちでない場合は、無記入でお願いします。こちらから取得のご案内を送ります。
+                        </div>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 15px;">ご請求</h3>
+                        <p style="font-size: 13px; color: #999; margin-bottom: 15px;">初期費用、月額利用料につきましては、別途送付資料をご参照ください。</p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="billingName">ご利用料金ご請求宛名 <span class="required">*</span></label>
+                            <input type="text" id="billingName" name="billingName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="billingNameFurigana">ご利用料金ご請求宛名（ふりがな） <span class="required">*</span></label>
+                            <input type="text" id="billingNameFurigana" name="billingNameFurigana" placeholder="ひらがなで入力" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <div class="info-box">
+                            【無料期間について】<br>
+                            サイト作成後、クレジットカードの登録(与信)が必要となります。<br>
+                            登録後、2週間が無料期間となります。
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">送信</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright © 2025 美容サロン向け -Aripitto予約システム-</p>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // Validate checkbox
+            if (!document.getElementById('agreement').checked) {
+                e.preventDefault();
+                alert('利用規約に同意してください。');
+                return;
+            }
+
+            // timestampをhiddenフィールドに追加
+            const timestampField = document.createElement('input');
+            timestampField.type = 'hidden';
+            timestampField.name = 'timestamp';
+            timestampField.value = new Date().toLocaleString('ja-JP');
+            document.getElementById('contactForm').appendChild(timestampField);
+
+            // フォーム送信後のメッセージ
+            alert('お問い合わせありがとうございました。\n近日中にご連絡させていただきます。');
+        });
+    </script>
+
+</body>
+</html>
